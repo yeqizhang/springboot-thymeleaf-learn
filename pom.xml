@@ -115,7 +115,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<maimClass>com.tgc.app.RunApp</maimClass>
+					<maimClass>com.tgc.RunApp</maimClass>
 				</configuration>
 				<executions>
 					<execution>

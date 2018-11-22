@@ -16,6 +16,10 @@ public interface UserMapper {
 	@Select("SELECT * FROM USERS WHERE NAME = #{name}")
 	@Cacheable
 	User findByName(@Param("name") String name);
+	
+	@Select("SELECT * FROM USERS WHERE USERNAME = #{username}")
+	//@Cacheable
+	User findByUsername(@Param("username") String username);
 
 	@Insert("INSERT INTO USERS(NAME, AGE) VALUES(#{name}, #{age})")
 	int insert(@Param("name") String name, @Param("age") Integer age);

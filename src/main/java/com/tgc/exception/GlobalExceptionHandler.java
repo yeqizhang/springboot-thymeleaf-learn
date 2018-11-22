@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
 		//下面消息返回给前台页面
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("errorCode", "500");
-		result.put("errorMsg", "系统出现错误!");
+		result.put("errorMsg", e.getMessage());
 		return result;
 	}
 

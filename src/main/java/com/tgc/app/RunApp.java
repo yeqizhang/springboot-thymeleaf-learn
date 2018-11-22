@@ -3,15 +3,10 @@ package com.tgc.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
-
-import com.tgc.datasource.DatabaseOneProperties;
 
 @ComponentScan(basePackages = { "com.tgc" })	//如果将此类放在com.tgc下则不需要此注解
 @SpringBootApplication 

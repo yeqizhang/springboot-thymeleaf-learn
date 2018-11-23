@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- common_header(~{::title},~{links},~{styles},~{::script}) 
+	传入父页面的元素。
+	没有的东西不要传~  自己加的javascript不要写header里了
+	-->
+<!--<head th:fragment="common_header(title,links,styles,script)"> -->
+<head th:fragment="common_header(title,links,styles)">
+	
+    <title th:replace="${title}">tgc-learn-app</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    
+     <!-- jquery -->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- jquery-validator -->
+    <script type="text/javascript" th:src="@{/jquery-validation/jquery.validate.min.js}"></script>
+    <script type="text/javascript" th:src="@{/jquery-validation/localization/messages_zh.min.js}"></script>
+    <!-- layer -->
+    <script type="text/javascript" th:src="@{/layer/layer.js}"></script>
+    <!--<link th:href="@{/content/ui/css/common.css}" rel="stylesheet" />-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+
+    <!--/* Per-page placeholder for additional links */-->
+    <th:block th:replace="${links}" /> 
+    <!--/* Per-page placeholder for additional styles */-->
+    <th:block th:replace="${styles}"/>
+    <!--/* Per-page placeholder for additional scripts 会把页面所有的script都加在head里*/-->
+    <!--<th:block th:replace="${scripts}"/>-->
+	<script type="text/javascript" th:inline="javascript">
+	    /*<![CDATA[*/
+	    var basePath = /*[[${#httpServletRequest.getScheme() + "://" + #httpServletRequest.getServerName() + ":" + #httpServletRequest.getServerPort() + #httpServletRequest.getContextPath()}]]*/;
+	    function getBaseUrl() {
+	        $("#basePathUrl").val(basePath);
+	        var a = $("#basePathUrl").val();
+	        return a;
+	    }
+	
+	    /*]]>*/
+	</script>
+</head>
+</html>

@@ -23,13 +23,34 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.8.RELEASE</version>
 	</parent>
+	
 	<dependencies>
+		
 		<!-- SpringBoot 核心组件 -->
 		<!--（起步依赖） 1.5.8 从 spring-boot-starterparent继承版本号-->
 		<!-- springboot-web组件 springmvc+spring+mybatis -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- 去掉默认配置 -->
+			<!-- <exclusions>  
+            	<exclusion>  
+	                <groupId>org.springframework.boot</groupId>  
+	                <artifactId>spring-boot-starter-logging</artifactId>  
+	            </exclusion>  
+	        </exclusions> -->
+		</dependency>
+		
+		<!--数据库连接池 druid-->
+		<!-- <dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.1.10</version>
+		</dependency> -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.15</version>
 		</dependency>
 		
 		<dependency>
@@ -55,13 +76,6 @@
 			<version>1.2.38</version>
 		</dependency>
 		
-		<!-- 连接池  druid-->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.0.15</version>
-		</dependency>
-		
 		<!-- 引入mybatis的依赖包. -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -77,21 +91,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-cache</artifactId>
-		</dependency> -->
 		
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency> -->
-		
-       <!--  <dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-		</dependency>  -->
-        
         <!-- redis 加 spring-session保持分布式sessino一致-->
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
@@ -102,7 +102,19 @@
 		    <artifactId>spring-session</artifactId>
 		</dependency>
         
-
+        <!--邮件报警包-->
+		<!--logback error 发邮件-->
+        <dependency>
+              <groupId>org.codehaus.janino</groupId>
+			  <artifactId>janino</artifactId>
+			  <version>2.7.8</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+		
 	</dependencies>
 	
 	<!-- 指定入口。 使用spring-boot-maven-plugin这个插件，它会对Maven打包形成的JAR进行二次修改 -->
@@ -123,6 +135,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<maimClass>com.tgc.RunApp</maimClass>
+					<jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
 				</configuration>
 				<executions>
 					<execution>

@@ -10,7 +10,7 @@ import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 
 /**
- * 配置druid  web访问。   http://127.0.0.1:8888/tgc/druid
+ * 配置druid  web访问。   http://127.0.0.1:8888/tgc/druid     http:/<host>:<port>/<context>/druid
  * 
  * session监控，不监控某些请求。。
  * spring监控 ，监控的类在 druid-bean.xml中配置。 所有类都可以监控到

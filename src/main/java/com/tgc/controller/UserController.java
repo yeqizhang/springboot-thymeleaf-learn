@@ -1,10 +1,10 @@
 
 package com.tgc.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ import com.tgc.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	private static Logger log = Logger.getLogger(UserController.class);
+	private static Logger log = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -35,7 +35,8 @@ public class UserController {
 	@RequestMapping("/list")
     public ModelAndView list(){
 		List<User> users = userMapper.findAllUsers();
-        ModelAndView modelAndView = new ModelAndView("/users");
+        //ModelAndView modelAndView = new ModelAndView("/users");	//不能有斜杠（打包成jar包部署到服务器上时，就一直报异常）
+		ModelAndView modelAndView = new ModelAndView("users");
         modelAndView.addObject("users", users);
         return modelAndView;
     }

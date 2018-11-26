@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="common/common_header :: common_header(~{::title},~{},~{})">
     <title>首页</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
+<!-- md5.js -->
+<script type="text/javascript" th:src="@{/js/md5.min.js}"></script>
+<!-- common.js -->
+<script type="text/javascript" th:src="@{/js/common.js}"></script>
 <body>
-	
+<div style="float:right;width:100px;text-align: center;">
+	<a th:href="@{/login/logout}">退出登录</a>
+</div>	
+<br/>
 <a th:href="@{/user/list}">1、用户列表</a>
 
 </body>

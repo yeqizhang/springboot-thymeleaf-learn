@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tgc.controller.result.Result;
 import com.tgc.entity.User;
-import com.tgc.service.UserService;
+import com.tgc.service.LoginService;
 
 
 @Controller
@@ -23,7 +23,7 @@ public class LoginController {
     private static Logger log = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    UserService userService;
+    LoginService loginService;
 
 
     @RequestMapping("/to_login")
@@ -37,13 +37,19 @@ public class LoginController {
     	//获取sessionId
         String sessionId=request.getSession().getId();
         boolean status = false;
-        status = userService.login(response, user,sessionId);
+        status = loginService.login(response, user,sessionId);
         if(status){
         	System.out.println("登陆成功~~");
         }else{
         	System.out.println("登陆失败~~");
         }
         return Result.success(Boolean.toString(status));
+    }
+    
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request,HttpServletResponse response) {
+    	loginService.logout(request);
+    	return "login";
     }
 
 }

@@ -4,13 +4,14 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.pool.xa.DruidXADataSource;
 
 /**
  * 使用 DruidXADataSource 集成 Atomikos, 配置了三个数据源。
@@ -20,8 +21,10 @@ import com.alibaba.druid.pool.xa.DruidXADataSource;
  *
  */
 @Configuration
-public class DruidXA {
+public class DruidDS {
 	
+	private static Logger logger = LoggerFactory.getLogger(DruidDS.class);
+
 
     @Value("${spring.datasource.druid.initialSize}")
     private int initialSize;
@@ -79,7 +82,7 @@ public class DruidXA {
         dataSource.setPassword(databaseOneProperties.getPassword());
         dataSource.setDriverClassName(databaseOneProperties.getDriverClassName());
         
-        setDruidXADataSourceProperties(dataSource);
+        setDruidDataSourceProperties(dataSource);
         
         return dataSource;
     	
@@ -87,27 +90,27 @@ public class DruidXA {
     
     /**
      * 设置druid 除url username password 以外的属性
-     * @param xaDataSource
+     * @param druidDataSource
      */
-    private void setDruidXADataSourceProperties(DruidDataSource xaDataSource){
-    	xaDataSource.setInitialSize(initialSize);
-        xaDataSource.setMinIdle(minIdle);
-        xaDataSource.setMaxActive(maxActive);
-        xaDataSource.setMaxWait(maxWait);
-        xaDataSource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
-        xaDataSource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
-        xaDataSource.setValidationQuery(validationQuery);
-        xaDataSource.setTestWhileIdle(testWhileIdle);
-        xaDataSource.setTestOnBorrow(testOnBorrow);
-        xaDataSource.setTestOnReturn(testOnReturn);
-        xaDataSource.setPoolPreparedStatements(poolPreparedStatements);
-        xaDataSource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
+    private void setDruidDataSourceProperties(DruidDataSource druidDataSource){
+    	druidDataSource.setInitialSize(initialSize);
+        druidDataSource.setMinIdle(minIdle);
+        druidDataSource.setMaxActive(maxActive);
+        druidDataSource.setMaxWait(maxWait);
+        druidDataSource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
+        druidDataSource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
+        druidDataSource.setValidationQuery(validationQuery);
+        druidDataSource.setTestWhileIdle(testWhileIdle);
+        druidDataSource.setTestOnBorrow(testOnBorrow);
+        druidDataSource.setTestOnReturn(testOnReturn);
+        druidDataSource.setPoolPreparedStatements(poolPreparedStatements);
+        druidDataSource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
         try {
-            xaDataSource.setFilters(filters);
+            druidDataSource.setFilters(filters);
         } catch (SQLException e) {
-            //logger.info("druid configuration initialization filter", e);
+            logger.info("druid configuration initialization filter", e);
         }
-        xaDataSource.setConnectionProperties(connectionProperties);
-        xaDataSource.setUseGlobalDataSourceStat(Boolean.valueOf(useGlobalDataSourceStat));
+        druidDataSource.setConnectionProperties(connectionProperties);
+        druidDataSource.setUseGlobalDataSourceStat(Boolean.valueOf(useGlobalDataSourceStat));
     }
 }

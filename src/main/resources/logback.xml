@@ -16,7 +16,7 @@
     <!-- 发送邮件账号，默认为null -->
     <property name="username" value="347792253@qq.com"/><!--发件人账号-->
     <!-- 发送邮件密码，默认为null。（qq邮箱中开启smtp服务后可获取到） -->
-    <property name="password" value=""/><!--发件人密码-->
+    <property name="password" value="xxxx"/><!--发件人密码-->
     <!-- 如果设置为true，appender将会使用SSL连接到日志服务器。默认值：false -->
     <property name="SSL" value="false"/>
     <!-- 指定发送到那个邮箱，可设置多个<to>属性，指定多个目的邮箱 -->

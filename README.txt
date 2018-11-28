@@ -154,6 +154,9 @@
 		//log.error("测试error日志发送到邮箱~", new Exception());	//测试成功。同时把异常详细信息发送了过去。
 		//log.info(MarkerFactory.getMarker("DONE"),"测试通过标记，发送日志到邮箱");	//测试成功。
 		
+		使用java工具类发送错误信息到邮箱：
+		SendMailUtils
+		
 二、使用thymeleaf视图
 	依赖：
 		<dependency>

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tgc.entity.User;
 import com.tgc.service.LoginService;
+import com.tgc.utils.SendMailUtils;
 
 @Component
 public class MyInterceptor implements HandlerInterceptor{
@@ -51,6 +52,7 @@ public class MyInterceptor implements HandlerInterceptor{
 			//log.error("测试error日志发送到邮箱~");	//测试成功
 			//log.error("测试error日志发送到邮箱~", new Exception());	//测试成功。同时把异常详细信息发送了过去。
 			//log.info(MarkerFactory.getMarker("DONE"),"测试通过标记，发送日志到邮箱");	//测试成功。
+			//SendMailUtils.send("测试通过java类发送error日志发送到邮箱~", (new Exception("报错信息：xxx")).getMessage());	//测试成功。
 			response.sendRedirect(request.getContextPath()+"/login/to_login");
 			System.out.println("*************未登陆状态***************");
 			return false;
